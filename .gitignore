@@ -1,8 +1,14 @@
 .idea/
 
- pom.xml
+target/
 
- target/
+threads.iml
 
- threads.iml
+.gitignor.save
+
+.gradle/
+
+
+
+
 
