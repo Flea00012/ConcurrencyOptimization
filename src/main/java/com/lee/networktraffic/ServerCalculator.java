@@ -15,16 +15,16 @@ public class ServerCalculator {
     private static final int NUMBER_OF_THREADS = Runtime.getRuntime().availableProcessors();
 
     public static void main(String[] args) throws IOException {
-        for (int i = 1; i < 10000000; i++)
-            startServer(i);
+        String string = "lee";
+            startServer(string);
 
         System.out.printf("Num of Threads %s", NUMBER_OF_THREADS);
 
     }
 
-    public static void startServer(int mass) throws IOException {
+    public static void startServer(String string) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        server.createContext("/calculation", new CalculationHandler(mass));
+        server.createContext("/word", new CalculationHandler(string));
         Executor executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
         server.setExecutor(executor);
         server.start();
@@ -32,25 +32,25 @@ public class ServerCalculator {
     }
 
     private static class CalculationHandler implements HttpHandler {
-        private int mass;
+        private String string;
 
-        public CalculationHandler(int mass) {
-            this.mass = mass;
+        public CalculationHandler(String string) {
+            this.string = string;
         }
 
         @Override
         public void handle(HttpExchange httpExchange) throws IOException {
-            int query = Integer.parseInt(httpExchange.getRequestURI().getQuery());
+            String query = httpExchange.getRequestURI().getQuery();
 
-            int energy = 0;
-            energy += 10 * query;
 
-            if(this.mass != 0){
-                httpExchange.sendResponseHeaders(400, 0);
+
+            if(!query.equals("lee")){
+                httpExchange.sendResponseHeaders(400, 1);
                 return;
             }
 
-            byte[] response = Long.toString(energy).getBytes();
+
+            byte[] response = Long.toString(Long.parseLong(query)).getBytes();
             httpExchange.sendResponseHeaders(200, response.length);
             OutputStream outputStream = httpExchange.getResponseBody();
             outputStream.write(response);
