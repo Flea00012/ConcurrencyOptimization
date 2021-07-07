@@ -14,6 +14,10 @@ public class Purchase extends Thread {
         this.aPackage = aPackage;
     }
 
+    public int getItemsRemaining(){
+        return this.itemsRemaining;
+    }
+
     @Override
     public void start() {
         while (itemsRemaining > 0) {
