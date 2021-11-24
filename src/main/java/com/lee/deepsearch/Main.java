@@ -1,4 +1,4 @@
-package com.lee.heuristics;
+package com.lee.deepsearch;
 
 public class Main {
 
@@ -15,9 +15,8 @@ public class Main {
       node1.addNeighbour(node2);
       node1.addNeighbour(node3);
       node2.addNeighbour(node4);
-      node4.addNeighbour(node7);
-      node1.addNeighbour(node5);
-      node5.addNeighbour(node6);
+      node4.addNeighbour(node5);
+      node4.addNeighbour(node6);
       node5.addNeighbour(node7);
 
       Algorithm algorithms = new Algorithm(node7);

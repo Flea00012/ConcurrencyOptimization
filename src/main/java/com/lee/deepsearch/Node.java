@@ -1,4 +1,4 @@
-package com.lee.heuristics;
+package com.lee.deepsearch;
 
 import java.util.ArrayList;
 import java.util.List;
